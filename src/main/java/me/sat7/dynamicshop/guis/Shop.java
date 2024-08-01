@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
+import java.util.stream.Collectors;
 import me.sat7.dynamicshop.DynaShopAPI;
 import me.sat7.dynamicshop.constants.Constants;
 import me.sat7.dynamicshop.economyhook.PlayerpointHook;
@@ -321,12 +322,17 @@ public final class Shop extends InGameUI
                         itemMetaLoreText = new StringBuilder(itemMetaLoreText.substring(0, itemMetaLoreText.length() - 1));
                     }
 
+                    String descriptionLoreText = shopData.getStringList(s + "description").stream()
+                            .map(x -> ChatColor.translateAlternateColorCodes('&', x))
+                            .collect(Collectors.joining("\n"));
+
                     lore = lore.replace("{\\nBuy}", buyText.isEmpty() ? "" : "\n" + buyText);
                     lore = lore.replace("{\\nSell}", sellText.isEmpty() ? "" : "\n" + sellText);
                     lore = lore.replace("{\\nStock}", stockText.isEmpty() ? "" : "\n" + stockText);
                     lore = lore.replace("{\\nPricingType}", pricingTypeText.isEmpty() ? "" : "\n" + pricingTypeText);
                     lore = lore.replace("{\\nTradeLore}", tradeLoreText.isEmpty() ? "" : "\n" + tradeLoreText);
                     lore = lore.replace("{\\nItemMetaLore}", (itemMetaLoreText.length() == 0) ? "" : "\n" + itemMetaLoreText);
+                    lore = lore.replace("{\\nDescription}", descriptionLoreText.isEmpty() ? "" : "\n" + descriptionLoreText);
 
                     lore = lore.replace("{Buy}", buyText);
                     lore = lore.replace("{Sell}", sellText);
@@ -334,6 +340,7 @@ public final class Shop extends InGameUI
                     lore = lore.replace("{PricingType}", pricingTypeText);
                     lore = lore.replace("{TradeLore}", tradeLoreText);
                     lore = lore.replace("{ItemMetaLore}", itemMetaLoreText.toString());
+                    lore = lore.replace("{Description}", descriptionLoreText);
 
                     String temp = lore.replace(" ","");
                     if(ChatColor.stripColor(temp).startsWith("\n"))
