@@ -322,7 +322,7 @@ public final class Shop extends InGameUI
                         itemMetaLoreText = new StringBuilder(itemMetaLoreText.substring(0, itemMetaLoreText.length() - 1));
                     }
 
-                    String descriptionLoreText = shopData.getStringList(s + "description").stream()
+                    String descriptionLoreText = shopData.getStringList(s + ".description").stream()
                             .map(x -> ChatColor.translateAlternateColorCodes('&', x))
                             .collect(Collectors.joining("\n"));
 

@@ -158,7 +158,7 @@ public class EditAll extends DSCMD
                 result = 0.0001;
             }
 
-            if (dataType.equals("stock") && result < 1)
+            if ((dataType.equals("stock") || dataType.equals("median") || dataType.equals("maxStock")) && result < 1)
             {
                 result = 1;
             }

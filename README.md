@@ -1,5 +1,5 @@
 Fork changes:
-* Caps the minimum stock at 1
+* Caps the minimum stock, median, and max stock at 1
 * Adds a description below the item in the GUI that is not added to the actual bought item
 
 Supported Minecraft versions: 1.16.5 ~ 1.21
